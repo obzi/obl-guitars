@@ -1,13 +1,15 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
+const CDN = 'https://images.unsplash.com'
+
 const guitars = [
-  { id: 1, name: 'Akustická — Smrk/Mahagon', type: 'Akustická', year: '2024' },
-  { id: 2, name: 'Klasická — Cedr/Palisandr', type: 'Klasická', year: '2024' },
-  { id: 3, name: 'Archtop — Javor/Smrk', type: 'Archtop', year: '2023' },
-  { id: 4, name: 'Parlour — Cedr/Mahagon', type: 'Parlour', year: '2023' },
-  { id: 5, name: 'Dreadnought — Smrk/Eben', type: 'Akustická', year: '2022' },
-  { id: 6, name: 'Fingerstyle — Cedr/Koa', type: 'Fingerstyle', year: '2022' },
+  { id: 1, name: 'Akustická — Smrk/Mahagon', type: 'Akustická', year: '2024', photo: `${CDN}/photo-1628887067605-5171efd812e3?auto=format&fit=crop&w=600&q=80` },
+  { id: 2, name: 'Klasická — Cedr/Palisandr', type: 'Klasická', year: '2024', photo: `${CDN}/photo-1568821385198-f0c35d781d6a?auto=format&fit=crop&w=600&q=80` },
+  { id: 3, name: 'Archtop — Javor/Smrk', type: 'Archtop', year: '2023', photo: `${CDN}/photo-1592448741782-82dbeca860aa?auto=format&fit=crop&w=600&q=80` },
+  { id: 4, name: 'Parlour — Cedr/Mahagon', type: 'Parlour', year: '2023', photo: `${CDN}/photo-1583005781194-b2ae9364a311?auto=format&fit=crop&w=600&q=80` },
+  { id: 5, name: 'Dreadnought — Smrk/Eben', type: 'Akustická', year: '2022', photo: `${CDN}/photo-1567771736278-1f625771edab?auto=format&fit=crop&w=600&q=80` },
+  { id: 6, name: 'Fingerstyle — Cedr/Koa', type: 'Fingerstyle', year: '2022', photo: `${CDN}/photo-1567771736315-133752f63a69?auto=format&fit=crop&w=600&q=80` },
 ]
 
 export default function Gallery() {
@@ -37,12 +39,14 @@ export default function Gallery() {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="group relative bg-surface border border-amber/10 rounded-sm overflow-hidden hover:border-amber/40 transition-colors duration-300"
             >
-              {/* Photo placeholder */}
-              <div className="aspect-[3/4] bg-dark/60 flex items-center justify-center">
-                <div className="text-center text-amber/20 group-hover:text-amber/40 transition-colors">
-                  <div className="text-5xl mb-2">🎸</div>
-                  <p className="text-xs tracking-widest uppercase">Foto přijde</p>
-                </div>
+              {/* Photo */}
+              <div className="aspect-[3/4] overflow-hidden">
+                <img
+                  src={guitar.photo}
+                  alt={guitar.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
               </div>
               <div className="p-4">
                 <div className="flex items-center justify-between mb-1">

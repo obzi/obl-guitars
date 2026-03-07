@@ -4,19 +4,15 @@ import { ChevronDown } from 'lucide-react'
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background texture overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-dark via-dark/95 to-surface" />
-
-      {/* Decorative wood grain lines */}
-      <div className="absolute inset-0 opacity-5">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-full border-t border-amber/50"
-            style={{ top: `${10 + i * 12}%`, transform: `rotate(${-2 + i * 0.5}deg)` }}
-          />
-        ))}
-      </div>
+      {/* Background photo */}
+      <img
+        src="https://images.unsplash.com/photo-1695727036766-4d06ac90d7f3?auto=format&fit=crop&w=1800&q=70"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark/90 via-dark/80 to-dark/95" />
 
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <motion.div
