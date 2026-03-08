@@ -1,5 +1,4 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 
 const CDN = 'https://images.unsplash.com'
 
@@ -13,16 +12,13 @@ const guitars = [
 ]
 
 export default function Gallery() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
-
   return (
     <section id="galerie" className="py-24 px-6 bg-dark">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
@@ -35,17 +31,17 @@ export default function Gallery() {
             <motion.div
               key={guitar.id}
               initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
               className="group relative bg-surface border border-amber/10 rounded-sm overflow-hidden hover:border-amber/40 transition-colors duration-300"
             >
-              {/* Photo */}
+              {/* Photo — eager loading, no lazy to avoid opacity-0 deadlock */}
               <div className="aspect-[3/4] overflow-hidden">
                 <img
                   src={guitar.photo}
                   alt={guitar.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
                 />
               </div>
               <div className="p-4">
